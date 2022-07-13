@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/ag-grid-community/dist/styles/ag-grid.css';
+@import '../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css';
+@import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.container {
+  margin: 0px 50px;
+}
+
+.red-snackbar {
+  background-color: red !important;
+  color: white !important;
+}
+
+.green-snackbar {
+  background-color: darkseagreen !important;
+  color: white !important;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

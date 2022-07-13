@@ -1,0 +1,13 @@
+<div class="container" style="margin: 50px;" (window:resize)="onResize()">
+  <ag-grid-angular class="ag-theme-balham"
+                   [columnDefs]="columnDefs"
+                   [rowData]="rowData"
+                   [readOnlyEdit]="true"
+                   rowSelection="single"                   
+                   (gridReady)="onGridReady($event)">
+  </ag-grid-angular>
+  <button type="button" (click)="createOrder()" class="btn btn-primary btn-small m-3">Add New Order</button>
+  <button type="button" (click)="showItems()" class="btn btn-primary btn-small m-3">Show Items</button>
+  <button type="button" (click)="addItems()" class="btn btn-primary btn-small m-3">Add Items</button>
+  <button type="button" (click)="deleteOrders()" class="btn btn-danger btn-small m-3">Delete Selected Order</button>
+</div>

@@ -1,0 +1,32 @@
+<mat-card class="mat-elevation-z4 m-3">
+  <mat-card-title>Add Item To Order</mat-card-title>
+  <mat-card-content>
+    <form #addForm="ngForm" (ngSubmit)="onSubmit()" fxLayout="column">
+
+      <ag-grid-angular class="ag-theme-balham"
+                       [columnDefs]="columnDefs"
+                       [rowData]="rowData"
+                       [readOnlyEdit]="true"
+                       rowSelection="single"
+                       (gridReady)="onGridReady($event)">
+      </ag-grid-angular>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Quantity</mat-label>
+        <input matInput
+               name="quantity"
+               type="number"
+               placeholder="Quantity to deliver"
+               required
+               min="0"
+               [(ngModel)]="quantity" />
+        <mat-error>Quantity is required.</mat-error>
+      </mat-form-field>
+
+      <div class="d-grid gap-3">
+        <button class="btn btn-primary" type="submit">Add Selected Item</button>
+        <button class="btn btn-secondary" type="button" mat-button [mat-dialog-close]="">Cancel</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,12 @@
+<mat-card class="mat-elevation-z4 m-3">
+  <mat-card-title>Order Items</mat-card-title>
+  <mat-card-content>
+    <ag-grid-angular class="ag-theme-balham"
+                     [columnDefs]="columnDefs"
+                     [rowData]="rowData"
+                     [readOnlyEdit]="true"
+                     (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+  <button class="btn btn-primary mt-3 px-4" type="button" mat-button [mat-dialog-close]="">Close</button>
+  </mat-card-content>    
+</mat-card>

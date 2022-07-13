@@ -1,0 +1,10 @@
+<div class="container" style="margin: 50px;" (window:resize)="onResize()">
+  <ag-grid-angular class="ag-theme-balham"
+                   [columnDefs]="columnDefs"
+                   [rowData]="rowData"
+                   [readOnlyEdit]="true"
+                   rowSelection="single" 
+                   (gridReady)="onGridReady($event)">
+  </ag-grid-angular>
+  <button type="button" (click)="showItems()" class="btn btn-primary btn-small m-3">Show Items</button>
+</div>

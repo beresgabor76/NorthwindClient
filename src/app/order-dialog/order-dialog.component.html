@@ -1,0 +1,40 @@
+<mat-card class="mat-elevation-z4 m-3">
+  <mat-card-title>Add New Order</mat-card-title>
+  <mat-card-content>
+    <form #addForm="ngForm" (ngSubmit)="onSubmit()" fxLayout="column">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Customer</mat-label>
+        <mat-select required *ngIf="customers$ | async as customers" name="customer" [(ngModel)]="order.customerID">
+          <mat-option *ngFor="let cr of customers" [value]="cr.customerID">{{ cr.companyName }}</mat-option>
+        </mat-select>
+        <mat-error>Customer selection is required.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" required readonly (dateChange)="onDateChange($event)">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Freight</mat-label>
+        <input matInput
+               name="freight"
+               type="number"
+               placeholder="Freight Cost"
+               required
+               min="0"
+               [(ngModel)]="order.freight" />
+        <mat-error>Freight cost is required.</mat-error>
+      </mat-form-field>
+
+      <div class="d-grid gap-3">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-secondary" type="button" mat-button [mat-dialog-close]="">Cancel</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

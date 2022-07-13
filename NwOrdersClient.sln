@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "NwOrdersClient", "NwOrdersClient.esproj", "{75C54920-E4AD-4867-B6B8-4D0FA09B2E60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75C54920-E4AD-4867-B6B8-4D0FA09B2E60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75C54920-E4AD-4867-B6B8-4D0FA09B2E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75C54920-E4AD-4867-B6B8-4D0FA09B2E60}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{75C54920-E4AD-4867-B6B8-4D0FA09B2E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75C54920-E4AD-4867-B6B8-4D0FA09B2E60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75C54920-E4AD-4867-B6B8-4D0FA09B2E60}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF03749D-45A2-4843-888E-683CCF2BFBB3}
+	EndGlobalSection
+EndGlobal
