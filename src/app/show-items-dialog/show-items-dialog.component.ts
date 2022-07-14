@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ColDef, ColumnApi, GridApi, GridReadyEvent } from 'ag-grid-community';
+import { CellEditRequestEvent, ColDef, ColumnApi, GridApi, GridReadyEvent } from 'ag-grid-community';
+import { CreateItemDto } from '../_models/CreateItemDto';
 import { OrderItemDto } from '../_models/OrderItemDto';
+import { MessageService } from '../_services/message.service';
 import { OrderService } from '../_services/order.service';
 
 @Component({
@@ -18,13 +20,14 @@ export class ShowItemsDialogComponent implements OnInit {
     { headerName: 'Product Name', field: 'productName', sortable: true, resizable: true },
     { headerName: 'QuantityPerUnit', field: 'quantityPerUnit', resizable: true },
     { headerName: 'Unit Price', field: 'unitPrice', resizable: true },
-    { headerName: 'Quantity', field: 'quantity', resizable: true }
+    { headerName: 'Quantity', field: 'quantity', resizable: true, editable: true }
   ];
   rowData: Array<OrderItemDto> = []
 
   constructor(public dialogRef: MatDialogRef<ShowItemsDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private orderService: OrderService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private orderService: OrderService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.refreshData();    
@@ -51,5 +54,27 @@ export class ShowItemsDialogComponent implements OnInit {
     });
     this.gridColumnApi.autoSizeColumns(allColumnIds, false);
     this.gridApi.sizeColumnsToFit();
+  }
+
+  onCellEditRequest(event: CellEditRequestEvent) {
+    const field = event.colDef.field;
+    if (field == 'quantity') {
+      const item = { ...event.data };
+
+      var dto: CreateItemDto = new CreateItemDto()
+      dto.orderID = this.data.id;
+      dto.productID = item.productID;
+      dto.quantity = event.newValue;
+      
+      this.orderService.updateItem(dto).subscribe(
+        () => {
+          this.refreshData();          
+          this.messageService.showSuccess('Ordered quantity has been modified.');
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
   }
 }

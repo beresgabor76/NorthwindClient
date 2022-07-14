@@ -46,8 +46,11 @@ export class OrderService {
     return this.http.get<ProductDto[]>(this.baseUrl + 'order/products');
   }
 
-  addItemsToOrder(dto: CreateItemDto) {
+  addItemToOrder(dto: CreateItemDto) {
     return this.http.post<string>(this.baseUrl + 'order/item', dto);
   }
 
+  updateItem(dto: CreateItemDto) {
+    return this.http.put<string>(this.baseUrl + 'order/item', dto)
+  }
 }

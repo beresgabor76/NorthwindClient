@@ -64,7 +64,7 @@ export class AddItemDialogComponent implements OnInit {
       createItemDto.orderID = this.data.orderID;
       createItemDto.productID = selectedRows[0].productId;
       createItemDto.quantity = this.quantity;
-      this.orderService.addItemsToOrder(createItemDto).subscribe(
+      this.orderService.addItemToOrder(createItemDto).subscribe(
         response => { this.messageService.showSuccess(response)
                       this.dialogRef.close(); },
         error => console.log(error));
