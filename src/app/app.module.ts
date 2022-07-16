@@ -25,11 +25,14 @@ import { MessageService } from './_services/message.service';
 import { ErrorInterceptor } from './_interceptor/error.interceptor';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
+import { TokenInterceptor } from './_interceptor/token.interceptor';
+import { AuthGuardService } from './_services/auth-guard.service';
+import { RegisterDialogComponent } from './register-dialog/register-dialog.component';
 
 const appRoutes: Routes = [
   { path: '', component: OrderListComponent },
   { path: 'orders', component: OrderListComponent },
-  { path: 'current', component: CurrentOrdersComponent },
+  { path: 'current', component: CurrentOrdersComponent, canActivate: [AuthGuardService] },
   { path: '**', component: OrderListComponent, pathMatch: 'full' }
 ]
 
@@ -41,7 +44,8 @@ const appRoutes: Routes = [
     CurrentOrdersComponent,
     OrderDialogComponent,
     ShowItemsDialogComponent,
-    AddItemDialogComponent
+    AddItemDialogComponent,
+    RegisterDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,12 +63,13 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,    
   ],
   providers: [
     OrderService,
     MessageService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' } ],
   bootstrap: [AppComponent]
 })

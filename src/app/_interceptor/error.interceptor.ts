@@ -28,9 +28,15 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
                 this.messageService.showError(message);
               }
-              else {
+              else if (error.error.Message) {
                 this.messageService.showError(error.error.Message);
               }
+              else if (error.error) {
+                this.messageService.showError(error.error);
+              }
+              break;
+            case 401:
+              this.messageService.showError("You are not allowed to do this action!");
               break;
             case 404:
               this.messageService.showError('Requested Page Not Found');

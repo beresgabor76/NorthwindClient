@@ -13,8 +13,7 @@ import { OrderService } from '../_services/order.service';
 })
 export class AddItemDialogComponent implements OnInit {
   private gridApi!: GridApi;
-  private gridColumnApi!: ColumnApi;  
-  quantity: number = 0;
+  private gridColumnApi!: ColumnApi;    
 
   columnDefs: ColDef[] = [
     { headerName: 'ProductID', field: 'productId', sortable: true, resizable: true },
@@ -57,13 +56,13 @@ export class AddItemDialogComponent implements OnInit {
     this.gridApi.sizeColumnsToFit();
   }
 
-  onSubmit() {
+  onSubmit(data: any) {
     var selectedRows = this.gridApi.getSelectedRows();   
     if (selectedRows.length == 1) {
       var createItemDto = new CreateItemDto();
       createItemDto.orderID = this.data.orderID;
       createItemDto.productID = selectedRows[0].productId;
-      createItemDto.quantity = this.quantity;
+      createItemDto.quantity = data.quantity;
       this.orderService.addItemToOrder(createItemDto).subscribe(
         response => { this.messageService.showSuccess(response)
                       this.dialogRef.close(); },

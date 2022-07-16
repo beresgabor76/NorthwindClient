@@ -1,7 +1,7 @@
 <mat-card class="mat-elevation-z4 m-3">
   <mat-card-title>Add Item To Order</mat-card-title>
   <mat-card-content>
-    <form #addForm="ngForm" (ngSubmit)="onSubmit()" fxLayout="column">
+    <form #addForm="ngForm" (ngSubmit)="onSubmit(addForm.value)" fxLayout="column">
 
       <ag-grid-angular class="ag-theme-balham"
                        [columnDefs]="columnDefs"
@@ -19,7 +19,7 @@
                placeholder="Quantity to deliver"
                required
                min="0"
-               [(ngModel)]="quantity" />
+               ngModel />
         <mat-error>Quantity is required.</mat-error>
       </mat-form-field>
 
