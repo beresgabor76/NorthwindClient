@@ -1,36 +1,39 @@
 <mat-card class="mat-elevation-z4 m-3">
   <mat-card-title>Register New User</mat-card-title>
   <mat-card-content>
-    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)" fxLayout="column">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" fxLayout="column">
 
       <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
         <input matInput
-               name="username"
-               type="text"               
-               required               
-               ngModel/>
-        <mat-error>Username is required.</mat-error>
+               type="text"
+               formControlName="username"
+               id="username"
+                />
+        <mat-error *ngIf="hasError('username', 'required')" >Username is required.</mat-error>
+        <mat-error *ngIf="hasError('username', 'minlength')">Username must be at least 3 characters long.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Password</mat-label>
         <input matInput
-               name="password"
-               type="password"               
-               required
-               ngModel/>
-        <mat-error>Password is required.</mat-error>
-      </mat-form-field>
+               type="password"
+               formControlName="password"
+               id="passowrd" />
+        <mat-error *ngIf="hasError('password', 'required')">Password is required.</mat-error>
+        <mat-error *ngIf="hasError('password', 'minlength')">Password must be at least 4 characters long.</mat-error>
+        <mat-error *ngIf="hasError('password', 'maxlength')">Password must be at most 8 characters long.</mat-error>
+     </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Confirm Password</mat-label>
         <input matInput
-               name="confirmPassword"
-               type="password"               
-               required               
-               ngModel/>
-        <mat-error>Confirm Password is required.</mat-error>
+               type="password"
+               formControlName="confirmPassword"
+               id="confirmPassword"               
+               />
+        <mat-error *ngIf="hasError('confirmPassword', 'required')">Confirm password is required.</mat-error>
+        <mat-error *ngIf="hasPasswordMatchError()">Confirm password must match password.</mat-error>
       </mat-form-field>
 
       <div class="d-grid gap-3">
